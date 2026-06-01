@@ -6,55 +6,8 @@ import { useRef, useState } from 'react'
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const projects = [
-  {
-    title: 'Telegram VPN Bot',
-    description: 'Production-ready Telegram-бот для автоматизации VPN-бизнеса с полным циклом продаж. Интеграция с 4 платежными системами, 3X-UI API, реферальная система и админ-панель.',
-    tech: ['Python', 'aiogram', 'PostgreSQL', 'SQLAlchemy', 'APScheduler', 'REST API'],
-    github: 'https://github.com/pakhomovmd/vpn_bot',
-    demo: null,
-    period: 'Апрель 2026',
-    gradient: 'from-blue-500 to-cyan-500'
-  },
-  {
-    title: 'CodeCleaner',
-    description: 'Веб-приложение для анализа неиспользуемого кода (dead code) в HTML/CSS/JS проектах. Реализация 3 методов анализа с multi-module Maven архитектурой.',
-    tech: ['Java 17', 'Spring Boot', 'Angular', 'PostgreSQL', 'Maven', 'JaCoCo'],
-    github: 'https://github.com/pakhomovmd/codecleaner',
-    demo: null,
-    period: 'Февраль 2026',
-    gradient: 'from-purple-500 to-pink-500'
-  },
-  {
-    title: 'Todo Spring',
-    description: 'Enterprise-уровня таск-трекер с JWT-аутентификацией (Access/Refresh токены), ролевой моделью и фильтрацией задач. Реактивный frontend на Angular с RxJS.',
-    tech: ['Java 17', 'Spring Boot', 'Spring Security', 'Angular', 'PostgreSQL', 'RxJS'],
-    github: 'https://github.com/pakhomovmd/todo-spring',
-    demo: null,
-    period: 'Март 2026',
-    gradient: 'from-green-500 to-emerald-500'
-  },
-  {
-    title: 'Call Evaluation Agent',
-    description: 'AI-агент для анализа телефонных звонков с определением тональности и генерацией рекомендаций. Интеграция с Hugging Face API (Llama-3.1-8B).',
-    tech: ['Python', 'Streamlit', 'Hugging Face', 'LLM', 'NLP'],
-    github: 'https://github.com/pakhomovmd/call-eval-agent',
-    demo: null,
-    period: 'Август 2025',
-    gradient: 'from-orange-500 to-red-500'
-  },
-  {
-    title: 'Task Tracker',
-    description: 'Fullstack система управления проектами и задачами. REST API с JWT-аутентификацией, система комментариев и назначения участников. SPA-интерфейс на React.',
-    tech: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'SQLAlchemy', 'Vite'],
-    github: 'https://github.com/pakhomovmd/todo-list',
-    demo: null,
-    period: 'Июль 2025',
-    gradient: 'from-indigo-500 to-blue-500'
-  },
-]
-
-function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
+function ProjectCard({ projectKey, index }: { projectKey: string, index: number }) {
+  const { t } = useLanguage()
   const [isHovered, setIsHovered] = useState(false)
   const cardRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -64,6 +17,42 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100])
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+
+  const projectsData: any = {
+    vpnBot: {
+      tech: ['Python', 'aiogram', 'PostgreSQL', 'SQLAlchemy', 'APScheduler', 'REST API'],
+      github: 'https://github.com/pakhomovmd/vpn_bot',
+      demo: null,
+      gradient: 'from-blue-500 to-cyan-500'
+    },
+    codeCleaner: {
+      tech: ['Java 17', 'Spring Boot', 'Angular', 'PostgreSQL', 'Maven', 'JaCoCo'],
+      github: 'https://github.com/pakhomovmd/codecleaner',
+      demo: null,
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    todoSpring: {
+      tech: ['Java 17', 'Spring Boot', 'Spring Security', 'Angular', 'PostgreSQL', 'RxJS'],
+      github: 'https://github.com/pakhomovmd/todo-spring',
+      demo: null,
+      gradient: 'from-green-500 to-emerald-500'
+    },
+    callAgent: {
+      tech: ['Python', 'Streamlit', 'Hugging Face', 'LLM', 'NLP'],
+      github: 'https://github.com/pakhomovmd/call-eval-agent',
+      demo: null,
+      gradient: 'from-orange-500 to-red-500'
+    },
+    taskTracker: {
+      tech: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'SQLAlchemy', 'Vite'],
+      github: 'https://github.com/pakhomovmd/todo-list',
+      demo: null,
+      gradient: 'from-indigo-500 to-blue-500'
+    }
+  }
+
+  const project = projectsData[projectKey]
+  const projectTranslation = (t.projects.projects as any)[projectKey]
 
   return (
     <motion.a
@@ -111,9 +100,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
                 animate={{ x: isHovered ? 5 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {project.title}
+                {projectTranslation.title}
               </motion.h3>
-              <p className="text-sm text-gray-500">{project.period}</p>
+              <p className="text-sm text-gray-500">{projectTranslation.period}</p>
             </div>
             
             <motion.div
@@ -127,7 +116,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
 
           {/* Description */}
           <p className="text-gray-400 mb-6 leading-relaxed line-clamp-3 group-hover:text-gray-300 transition-colors">
-            {project.description}
+            {projectTranslation.description}
           </p>
 
           {/* Tech Stack */}
@@ -243,8 +232,8 @@ export default function Projects() {
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
+            {['vpnBot', 'codeCleaner', 'todoSpring', 'callAgent', 'taskTracker'].map((projectKey, index) => (
+              <ProjectCard key={projectKey} projectKey={projectKey} index={index} />
             ))}
           </div>
 

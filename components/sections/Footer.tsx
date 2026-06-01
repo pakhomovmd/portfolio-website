@@ -1,8 +1,10 @@
 'use client'
 
 import { Github, Send, Mail, Heart } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Footer() {
+  const { t } = useLanguage()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -11,39 +13,34 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold gradient-text mb-4">Михаил Пахомов</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-4">Mikhail Pakhomov</h3>
             <p className="text-gray-400">
-              Junior Fullstack Developer специализирующийся на Python, Java и современных веб-технологиях.
+              {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Быстрые ссылки</h4>
+            <h4 className="text-lg font-semibold mb-4">{t.footer.quickLinks}</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#about" className="text-gray-400 hover:text-primary transition-colors">
-                  Обо мне
+                  {t.footer.about}
                 </a>
               </li>
               <li>
                 <a href="#skills" className="text-gray-400 hover:text-primary transition-colors">
-                  Навыки
+                  {t.footer.skills}
                 </a>
               </li>
               <li>
                 <a href="#projects" className="text-gray-400 hover:text-primary transition-colors">
-                  Проекты
-                </a>
-              </li>
-              <li>
-                <a href="#experience" className="text-gray-400 hover:text-primary transition-colors">
-                  Опыт
+                  {t.footer.projects}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="text-gray-400 hover:text-primary transition-colors">
-                  Контакты
+                  {t.footer.contact}
                 </a>
               </li>
             </ul>
@@ -51,7 +48,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Контакты</h4>
+            <h4 className="text-lg font-semibold mb-4">{t.footer.contactTitle}</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <a href="mailto:pakhomovmichael@icloud.com" className="hover:text-primary transition-colors">
@@ -69,7 +66,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-gray-500">
-                Самара, Россия
+                {t.contact.locationValue}
               </li>
             </ul>
           </div>
@@ -107,7 +104,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center text-gray-500 text-sm border-t border-white/10 pt-8">
           <p className="flex items-center justify-center gap-2">
-            © {currentYear} Михаил Пахомов. Сделано с <Heart className="w-4 h-4 text-red-500 fill-red-500" /> и Next.js
+            © {currentYear} Mikhail Pakhomov. {t.footer.madeWith} <Heart className="w-4 h-4 text-red-500 fill-red-500" /> {t.footer.and} Next.js
           </p>
         </div>
       </div>

@@ -15,6 +15,9 @@ const config: Config = {
         secondary: '#8b5cf6',
         accent: '#06b6d4',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
