@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, Sparkles } from 'lucide-react'
+import { ArrowDown, Github, Send, Mail } from 'lucide-react'
 import { useRef } from 'react'
 
 export default function Hero() {
@@ -194,7 +194,7 @@ export default function Hero() {
           >
             {[
               { icon: Github, href: 'https://github.com/pakhomovmd', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+              { icon: Send, href: 'https://t.me/hellap7ay3r', label: 'Telegram' },
               { icon: Mail, href: 'mailto:pakhomovmichael@icloud.com', label: 'Email' }
             ].map((social, index) => (
               <motion.a

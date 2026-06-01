@@ -65,7 +65,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
 
   return (
-    <motion.div
+    <motion.a
+      href={project.github}
+      target="_blank"
+      rel="noopener noreferrer"
       ref={cardRef}
       style={{ opacity }}
       initial={{ opacity: 0, y: 50 }}
@@ -74,7 +77,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
       transition={{ delay: index * 0.1, duration: 0.6 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative"
+      className="group relative block cursor-pointer"
     >
       <div className="relative glass rounded-3xl overflow-hidden transition-all duration-500 hover:bg-white/10 border border-white/5 hover:border-white/20">
         {/* Gradient Background on Hover */}
@@ -184,7 +187,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
           className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-accent rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10"
         />
       </div>
-    </motion.div>
+    </motion.a>
   )
 }
 

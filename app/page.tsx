@@ -5,21 +5,17 @@ import Projects from '@/components/sections/Projects'
 import Experience from '@/components/sections/Experience'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
-import Preloader from '@/components/ui/Preloader'
 
 export default function Home() {
   return (
-    <>
-      <Preloader />
-      <main className="min-h-screen">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-        <Footer />
-      </main>
-    </>
+    <main className="min-h-screen">
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Contact />
+      <Footer />
+    </main>
   )
 }

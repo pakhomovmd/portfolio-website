@@ -6,37 +6,37 @@ import { useRef } from 'react'
 
 const skillsData = {
   Backend: [
-    { name: 'Python', level: 90 },
-    { name: 'FastAPI', level: 85 },
-    { name: 'Django', level: 75 },
-    { name: 'Java', level: 80 },
-    { name: 'Spring Boot', level: 80 },
-    { name: 'Spring Security', level: 75 },
+    'Python',
+    'FastAPI',
+    'Django',
+    'Java',
+    'Spring Boot',
+    'Spring Security',
   ],
   Frontend: [
-    { name: 'React', level: 85 },
-    { name: 'Angular', level: 80 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'Next.js', level: 75 },
+    'React',
+    'Angular',
+    'TypeScript',
+    'Tailwind CSS',
+    'Next.js',
   ],
   Databases: [
-    { name: 'PostgreSQL', level: 85 },
-    { name: 'SQLAlchemy', level: 85 },
-    { name: 'Hibernate', level: 75 },
+    'PostgreSQL',
+    'SQLAlchemy',
+    'Hibernate',
   ],
   'DevOps & Tools': [
-    { name: 'Git', level: 90 },
-    { name: 'Linux', level: 80 },
-    { name: 'Docker', level: 70 },
-    { name: 'Maven', level: 75 },
-    { name: 'npm', level: 85 },
+    'Git',
+    'Linux',
+    'Docker',
+    'Maven',
+    'npm',
   ],
   'AI/ML': [
-    { name: 'Hugging Face', level: 75 },
-    { name: 'OpenCV', level: 70 },
-    { name: 'YOLO', level: 65 },
-    { name: 'NLP', level: 70 },
+    'Hugging Face',
+    'OpenCV',
+    'YOLO',
+    'NLP',
   ],
 }
 
@@ -53,10 +53,38 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center gradient-text">
-            Навыки
-          </h2>
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6"
+            >
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-gray-400">Технологии</span>
+            </motion.div>
 
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-5xl md:text-7xl font-bold mb-6"
+            >
+              <span className="gradient-text">Навыки</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl text-gray-400 max-w-2xl mx-auto"
+            >
+              Технологии и инструменты, с которыми я работаю
+            </motion.p>
+          </div>
+
+          {/* Skills Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(skillsData).map(([category, skills], categoryIndex) => (
               <motion.div
@@ -64,27 +92,23 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
-                className="glass p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
+                className="glass p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group border border-white/5 hover:border-white/20"
               >
                 <h3 className="text-2xl font-bold mb-6 text-primary group-hover:text-accent transition-colors">
                   {category}
                 </h3>
-                <div className="space-y-4">
+                <div className="flex flex-wrap gap-3">
                   {skills.map((skill, index) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-gray-300 font-medium">{skill.name}</span>
-                        <span className="text-gray-500 text-sm">{skill.level}%</span>
-                      </div>
-                      <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : {}}
-                          transition={{ delay: categoryIndex * 0.1 + index * 0.05, duration: 1, ease: 'easeOut' }}
-                          className="h-full bg-gradient-to-r from-primary via-secondary to-accent rounded-full"
-                        />
-                      </div>
-                    </div>
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: categoryIndex * 0.1 + index * 0.05 }}
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      className="px-4 py-2 text-sm font-medium glass rounded-xl hover:bg-primary/20 hover:text-primary transition-all duration-300 cursor-default border border-white/5 hover:border-primary/50"
+                    >
+                      {skill}
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
@@ -106,6 +130,7 @@ export default function Skills() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: 0.7 + index * 0.05, duration: 0.4 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
                   className="px-4 py-2 glass rounded-full text-sm font-medium hover:bg-white/10 transition-all duration-300 cursor-default"
                 >
                   {tech}
