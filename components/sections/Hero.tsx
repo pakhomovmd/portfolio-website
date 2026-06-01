@@ -3,8 +3,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown, Github, Send, Mail } from 'lucide-react'
 import { useRef } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Hero() {
+  const { t } = useLanguage()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -84,7 +86,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8 group hover:bg-white/10 transition-all duration-300"
           >
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-sm font-medium">Доступен для новых проектов</span>
+            <span className="text-sm font-medium">{t.hero.available}</span>
           </motion.div>
 
           {/* Main Heading with Stagger Animation */}
@@ -102,7 +104,7 @@ export default function Hero() {
                   transition={{ delay: 0.4, duration: 0.8 }}
                   className="gradient-text"
                 >
-                  Михаил
+                  {t.hero.name.split(' ')[0]}
                 </motion.span>
               </span>
               <br />
@@ -113,7 +115,7 @@ export default function Hero() {
                   transition={{ delay: 0.5, duration: 0.8 }}
                   className="gradient-text"
                 >
-                  Пахомов
+                  {t.hero.name.split(' ')[1]}
                 </motion.span>
               </span>
             </motion.h1>
@@ -127,7 +129,7 @@ export default function Hero() {
             className="mb-6"
           >
             <p className="text-2xl md:text-4xl lg:text-5xl text-gray-400 font-light mb-4">
-              Junior Fullstack Developer
+              {t.hero.title}
             </p>
           </motion.div>
 
@@ -138,11 +140,7 @@ export default function Hero() {
             transition={{ delay: 0.9, duration: 0.8 }}
             className="text-lg md:text-xl text-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Создаю современные веб-приложения с использованием{' '}
-            <span className="text-primary font-semibold">Python</span>,{' '}
-            <span className="text-secondary font-semibold">Java</span>,{' '}
-            <span className="text-accent font-semibold">React</span> и{' '}
-            <span className="text-primary font-semibold">AI/ML</span> технологий
+            {t.hero.description}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -159,7 +157,7 @@ export default function Hero() {
               className="group relative px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold transition-all duration-300 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Связаться со мной
+                {t.hero.contactButton}
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
@@ -181,7 +179,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 glass hover:bg-white/10 text-white rounded-full font-semibold transition-all duration-300 backdrop-blur-xl"
             >
-              Посмотреть проекты
+              {t.hero.projectsButton}
             </motion.button>
           </motion.div>
 
@@ -235,7 +233,7 @@ export default function Hero() {
             className="flex flex-col items-center gap-2 cursor-pointer group"
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <span className="text-sm text-gray-500 group-hover:text-primary transition-colors">Прокрутите вниз</span>
+            <span className="text-sm text-gray-500 group-hover:text-primary transition-colors">{t.hero.scrollDown}</span>
             <ArrowDown className="w-5 h-5 text-gray-500 group-hover:text-primary transition-colors" />
           </motion.div>
         </motion.div>
