@@ -4,8 +4,10 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Code2, Sparkles, Zap, Target } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function About() {
+  const { t } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   
@@ -19,26 +21,26 @@ export default function About() {
   const strengths = [
     {
       icon: Zap,
-      title: 'Быстрое освоение',
-      description: 'Новых технологий и фреймворков',
+      title: t.about.strengths.learning.title,
+      description: t.about.strengths.learning.description,
       gradient: 'from-yellow-500 to-orange-500'
     },
     {
       icon: Code2,
-      title: 'Асинхронное программирование',
-      description: 'Python async/await, RxJS',
+      title: t.about.strengths.async.title,
+      description: t.about.strengths.async.description,
       gradient: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Target,
-      title: 'Проектирование архитектуры',
-      description: 'REST API, микросервисы, БД',
+      title: t.about.strengths.architecture.title,
+      description: t.about.strengths.architecture.description,
       gradient: 'from-purple-500 to-pink-500'
     },
     {
       icon: Sparkles,
-      title: 'Интеграция API',
-      description: 'Внешние сервисы и платежные системы',
+      title: t.about.strengths.integration.title,
+      description: t.about.strengths.integration.description,
       gradient: 'from-green-500 to-emerald-500'
     }
   ]
@@ -65,7 +67,7 @@ export default function About() {
               className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6"
             >
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-gray-400">Познакомимся</span>
+              <span className="text-sm font-medium text-gray-400">{t.about.badge}</span>
             </motion.div>
 
             <motion.h2
@@ -74,7 +76,7 @@ export default function About() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-5xl md:text-7xl font-bold mb-6"
             >
-              <span className="gradient-text">Обо мне</span>
+              <span className="gradient-text">{t.about.title}</span>
             </motion.h2>
           </div>
 
@@ -142,7 +144,7 @@ export default function About() {
                   className="absolute -left-4 top-1/4 glass p-4 rounded-2xl border border-white/10"
                 >
                   <div className="text-3xl font-bold gradient-text">5+</div>
-                  <div className="text-sm text-gray-400">Проектов</div>
+                  <div className="text-sm text-gray-400">{t.about.projects}</div>
                 </motion.div>
 
                 <motion.div
@@ -152,7 +154,7 @@ export default function About() {
                   className="absolute -right-4 bottom-1/4 glass p-4 rounded-2xl border border-white/10"
                 >
                   <div className="text-3xl font-bold gradient-text">7+</div>
-                  <div className="text-sm text-gray-400">Месяцев опыта</div>
+                  <div className="text-sm text-gray-400">{t.about.experience}</div>
                 </motion.div>
               </div>
             </motion.div>
@@ -171,9 +173,7 @@ export default function About() {
                   transition={{ delay: 0.7 }}
                   className="text-lg text-gray-300 leading-relaxed"
                 >
-                  Я студент 4-го курса <span className="text-primary font-semibold">Самарского университета</span> по направлению 
-                  &quot;Информатика и вычислительная техника&quot;. Увлечен разработкой современных веб-приложений 
-                  и исследованиями в области искусственного интеллекта.
+                  {t.about.paragraph1}
                 </motion.p>
 
                 <motion.p
@@ -182,10 +182,7 @@ export default function About() {
                   transition={{ delay: 0.8 }}
                   className="text-lg text-gray-300 leading-relaxed"
                 >
-                  Вместе со своим научным руководителем занимался НИР на тему виртуальной реальности, 
-                  работал с <span className="text-secondary font-semibold">OpenCV</span>, нейросетью <span className="text-accent font-semibold">YOLO</span> и 
-                  инструментом разметки данных CVAT. Выступал на конференции{' '}
-                  <span className="text-primary font-semibold">Volga Cyber Week 2025</span> со своим исследованием.
+                  {t.about.paragraph2}
                 </motion.p>
 
                 <motion.p
@@ -194,11 +191,7 @@ export default function About() {
                   transition={{ delay: 0.9 }}
                   className="text-lg text-gray-300 leading-relaxed"
                 >
-                  Специализируюсь на fullstack разработке с использованием{' '}
-                  <span className="text-primary font-semibold">Python</span> (FastAPI, Django),{' '}
-                  <span className="text-secondary font-semibold">Java</span> (Spring Boot),{' '}
-                  <span className="text-accent font-semibold">React</span> и Angular. 
-                  Имею опыт создания production-ready приложений с интеграцией AI/ML, платежных систем и REST API.
+                  {t.about.paragraph3}
                 </motion.p>
               </div>
 
@@ -210,7 +203,7 @@ export default function About() {
                   transition={{ delay: 1 }}
                   className="text-2xl font-semibold mb-6 text-gray-200"
                 >
-                  Мои сильные стороны
+                  {t.about.strengthsTitle}
                 </motion.h3>
                 
                 <div className="grid sm:grid-cols-2 gap-4">

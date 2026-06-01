@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const skillsData = {
   Backend: [
@@ -41,6 +42,7 @@ const skillsData = {
 }
 
 export default function Skills() {
+  const { t } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -62,7 +64,7 @@ export default function Skills() {
               className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6"
             >
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-gray-400">Технологии</span>
+              <span className="text-sm font-medium text-gray-400">{t.skills.badge}</span>
             </motion.div>
 
             <motion.h2
@@ -71,7 +73,7 @@ export default function Skills() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-5xl md:text-7xl font-bold mb-6"
             >
-              <span className="gradient-text">Навыки</span>
+              <span className="gradient-text">{t.skills.title}</span>
             </motion.h2>
 
             <motion.p
@@ -80,7 +82,7 @@ export default function Skills() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xl text-gray-400 max-w-2xl mx-auto"
             >
-              Технологии и инструменты, с которыми я работаю
+              {t.skills.description}
             </motion.p>
           </div>
 
@@ -122,7 +124,7 @@ export default function Skills() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mt-16 text-center"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-gray-400">Дополнительные технологии</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-gray-400">{t.skills.additional}</h3>
             <div className="flex flex-wrap justify-center gap-3">
               {['REST API', 'JWT', 'OAuth', 'Webhook', 'Microservices', 'SPA', 'Async/Await', 'JUnit', 'JaCoCo', 'Telegram Bot API', 'Framer Motion', 'RxJS'].map((tech, index) => (
                 <motion.span

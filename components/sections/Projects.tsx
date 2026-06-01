@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const projects = [
   {
@@ -192,6 +193,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
 }
 
 export default function Projects() {
+  const { t } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -217,7 +219,7 @@ export default function Projects() {
               className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6"
             >
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-gray-400">Избранные проекты</span>
+              <span className="text-sm font-medium text-gray-400">{t.projects.badge}</span>
             </motion.div>
 
             <motion.h2
@@ -226,7 +228,7 @@ export default function Projects() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-5xl md:text-7xl font-bold mb-6"
             >
-              <span className="gradient-text">Мои проекты</span>
+              <span className="gradient-text">{t.projects.title}</span>
             </motion.h2>
 
             <motion.p
@@ -235,7 +237,7 @@ export default function Projects() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xl text-gray-400 max-w-2xl mx-auto"
             >
-              Коллекция проектов, демонстрирующих мои навыки в fullstack разработке, AI/ML и современных технологиях
+              {t.projects.description}
             </motion.p>
           </div>
 
@@ -261,7 +263,7 @@ export default function Projects() {
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-8 py-4 glass hover:bg-white/10 rounded-full font-semibold transition-all duration-300 group"
             >
-              <span>Посмотреть все на GitHub</span>
+              <span>{t.projects.viewAll}</span>
               <motion.span
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
