@@ -83,7 +83,7 @@ export default function Hero() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8 group hover:bg-white/10 transition-all duration-300"
           >
-            <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="text-sm font-medium">Доступен для новых проектов</span>
           </motion.div>
 
