@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pakhomovmd.vercel.app/sitemap.xml
+
+# Disallow admin pages (if any in future)
+Disallow: /api/
