@@ -121,7 +121,7 @@ function ProjectCard({ projectKey, index }: { projectKey: string, index: number 
 
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.tech.map((tech, i) => (
+            {project.tech.map((tech: string, i: number) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
